@@ -1,6 +1,6 @@
 # zhimma_admin
 
-> zhimma_blog admin
+> 使用vue，前后端分离，用来管理博客后台
 
 ## Build Setup
 
