@@ -27,6 +27,10 @@ module.exports = {
         alias: {
             'vue$': 'vue/dist/vue.esm.js',
             '@': resolve('src'),
+            //添加路径别名
+            'sysComponents': '@/components/locale',
+            'util': '@/util',
+            'asset': '@/asset',
             '$': "jQuery",
             'jQuery': "jQuery",
             "windows.jQuery": "jQuery"
