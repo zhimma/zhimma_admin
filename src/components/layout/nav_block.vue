@@ -1,7 +1,9 @@
 <template>
     <el-row class="tac">
         <el-col :span="12">
-            <h5>默认颜色</h5>
+            <h5>
+                菜单
+                </h5>
             <el-menu
                     default-active="2"
                     class="el-menu-vertical-demo"
@@ -11,6 +13,7 @@
                     <template slot="title">
                         <i class="el-icon-location"></i>
                         <span>导航一</span>
+
                     </template>
                     <el-menu-item-group>
                         <template slot="title">分组一</template>
@@ -44,7 +47,15 @@
 
 <script>
     export default {
-        name: "nav_block"
+        name: "nav_block",
+        methods: {
+            handleOpen(key, keyPath) {
+                console.log(key, keyPath);
+            },
+            handleClose(key, keyPath) {
+                console.log(key, keyPath);
+            }
+        }
     }
 </script>
 

@@ -6,7 +6,7 @@
         <!-- 中间导航区域 -->
         <el-col :span="20" >
             <el-menu
-                    :default-active="activeIndex2"
+                    :default-active="activeIndex"
                     class="menu"
                     router
                     mode="horizontal"
@@ -25,7 +25,18 @@
 </template>
 <script>
     export default {
-        name: "header_block"
+        name: "header_block",
+        data() {
+            return {
+                activeIndex: '1',
+                activeIndex2: '1'
+            };
+        },
+        methods: {
+            handleSelect(key, keyPath) {
+                console.log(key, keyPath);
+            }
+        }
     }
 </script>
 
