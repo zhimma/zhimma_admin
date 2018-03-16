@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import index from '@/components/index';
+import index from '@/view/index/index';
 import login from '@/view/login/index';
 import menu from '@/components/menu';
 import user from '@/components/user';
@@ -13,7 +13,7 @@ export default new Router({
         {
             path: '/index',
             name: '首页',
-            component: index
+            component: index,
         },
         {
             path: '/',
