@@ -1,10 +1,13 @@
 <template>
-    <h1>111</h1>
+    <el-footer>
+        <h1>footer ma</h1>
+    </el-footer>
 </template>
 
 <script>
+
     export default {
-        name: "footer"
+        name: "footerMa"
     }
 </script>
 

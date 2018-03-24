@@ -1,11 +1,10 @@
 <template>
-    <h1>dsfdasfffff</h1>
+    <h1>111</h1>
 </template>
 
 <script>
     export default {
         name: "index",
-
         mounted: function () {
         }
     }
