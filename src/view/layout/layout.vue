@@ -7,9 +7,9 @@
             <el-aside width="200px"><aside-ma></aside-ma></el-aside>
             <el-container>
                 <el-main>Main</el-main>
-                <el-footer><footer-ma></footer-ma></el-footer>
             </el-container>
         </el-container>
+        <el-footer><footer-ma></footer-ma></el-footer>
     </el-container>
 
 </template>
