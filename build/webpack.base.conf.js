@@ -32,8 +32,7 @@ module.exports = {
             'util': '@/util',
             'asset': '@/asset',
             '$': "jQuery",
-            'jQuery': "jQuery",
-            "windows.jQuery": "jQuery"
+            'scss_vars': '@/styles/vars.scss'
         }
     },
     plugins: [

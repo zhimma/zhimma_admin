@@ -8,6 +8,9 @@ import 'element-ui/lib/theme-chalk/index.css';
 import App from './App';
 import router from './router';
 import Config from './config';
+
+import 'font-awesome/css/font-awesome.min.css'
+
 Vue.prototype.$Config = Config;
 Vue.use(ElementUI);
 
