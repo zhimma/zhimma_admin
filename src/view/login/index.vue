@@ -37,20 +37,15 @@
         data() {
             var validateAccount = (rule, value, callback) => {
                 if (value === '') {
-                    callback(new Error('请输入密码'));
-                } else {
-                    if (this.loginForm.checkPass !== '') {
-                        this.$refs.loginForm.validateField('checkPassword');
-                    }
+                    callback(new Error('请输入账号'));
+                }else{
                     callback();
                 }
             };
             var validatePassword = (rule, value, callback) => {
                 if (value === '') {
-                    callback(new Error('请再次输入密码'));
-                } else if (value !== this.loginForm.pass) {
-                    callback(new Error('两次输入密码不一致!'));
-                } else {
+                    callback(new Error('请输入密码'));
+                }else{
                     callback();
                 }
             };
@@ -73,8 +68,18 @@
             submitForm(formName) {
                 this.$refs[formName].validate((valid) => {
                     if (valid) {
-                        alert('submit!');
+                        this.$axios({
+                            method : 'POST',
+                            url:'/login',
+                            data:{
+                                'account' : 'zhimma',
+                                'password' : '123456'
+                            }
+                        }).then(function(){
+
+                        });
                     } else {
+                        console.log(111);
                         return false;
                     }
                 });

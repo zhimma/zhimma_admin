@@ -4,26 +4,25 @@ import Vue from 'vue';
 import store from './store';
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
-
+import axios from './until/axios';
 import App from './App';
 import router from './router';
 import Config from './config';
-
 import 'font-awesome/css/font-awesome.min.css'
 
+Vue.prototype.$axios = axios;
 Vue.prototype.$Config = Config;
 Vue.use(ElementUI);
 
 //全局前置钩子
 router.beforeEach((to, from, next) => {
-    /*window.document.title = to.meta.title?to.meta.title+'-'+Config.siteName:Config.siteName;
+    window.document.title = to.meta.title?to.meta.title+'-'+Config.siteName:Config.siteName;
 
     if (!sessionStorage.getItem(Config.tokenKey) && to.path != '/login') {
         next({path: '/login'});
     } else {
         next();
-    }*/
-    next();
+    }
 
 });
 //全局后置钩子
