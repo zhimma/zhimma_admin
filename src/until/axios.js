@@ -1,6 +1,5 @@
 import axios from 'axios'
 import qs from 'qs';
-import { Message } from 'element-ui';
 import store from '../store'
 
 const http = axios.create({
@@ -16,7 +15,7 @@ http.interceptors.request.use(
             'Content-Type' : 'application/x-www-form-urlencoded'
         }
         if (store.state.token) {
-            config.headers.Authorization = `token ${store.state.token}`;
+            config.headers.Authorization = `Bearer ${store.state.token}`;
         }
         return config;
     },

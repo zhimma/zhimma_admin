@@ -75,8 +75,8 @@
                                 'account' : 'zhimma',
                                 'password' : '123456'
                             }
-                        }).then(function(){
-
+                        }).then(function(response){
+                           localStorage.setItem('token', response.data.data.token);
                         });
                     } else {
                         console.log(111);
