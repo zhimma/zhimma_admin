@@ -4,9 +4,7 @@ import Router from 'vue-router'
 import layout from '@/view/layout/layout';
 import index from '@/view/index/index';
 import login from '@/view/login/index';
-import menu from '@/components/menu';
-import user from '@/components/user';
-import role from '@/components/role';
+
 
 Vue.use(Router);
 

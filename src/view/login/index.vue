@@ -76,7 +76,8 @@
                                 'password' : '123456'
                             }
                         }).then(function(response){
-                           localStorage.setItem('token', response.data.data.token);
+                           localStorage.setItem('Authorization', response.data.data.token);
+                           this.$router.push('/index');
                         });
                     } else {
                         console.log(111);

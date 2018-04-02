@@ -5,11 +5,5 @@
 <script>
     export default {
         name: "index",
-        mounted: function () {
-        }
     }
 </script>
-
-<style scoped>
-
-</style>
