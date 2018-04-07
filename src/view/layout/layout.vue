@@ -24,49 +24,55 @@
             <aside :class="isCollapse?'menu-isCollapse':'menu-expanded'">
                 <el-menu default-active="1-4-1" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose"
                          :collapse="isCollapse">
-                    <el-submenu index="1">
+
+                    <el-menu-item index="1">
+                        <i class="el-icon-setting"></i>
+                        <span slot="title">主页</span>
+                    </el-menu-item>
+                    <el-submenu index="2">
                         <template slot="title">
                             <i class="el-icon-location"></i>
-                            <span slot="title">导航一</span>
+                            <span slot="title">菜单管理</span>
                         </template>
                         <el-menu-item-group>
-                            <span slot="title">分组一</span>
-                            <el-menu-item index="1-1">选项1</el-menu-item>
-                            <el-menu-item index="1-2">选项2</el-menu-item>
+                            <router-link to="/menu" >
+                                <el-menu-item index="2-1">菜单列表</el-menu-item>
+                            </router-link>
+
                         </el-menu-item-group>
-                        <el-menu-item-group title="分组2">
-                            <el-menu-item index="1-3">选项3</el-menu-item>
-                        </el-menu-item-group>
-                        <el-submenu index="1-4">
-                            <span slot="title">选项4</span>
-                            <el-menu-item index="1-4-1">选项1</el-menu-item>
-                        </el-submenu>
                     </el-submenu>
-                    <el-menu-item index="2">
-                        <i class="el-icon-menu"></i>
-                        <span slot="title">导航二</span>
-                    </el-menu-item>
-                    <el-menu-item index="3" disabled>
-                        <i class="el-icon-document"></i>
-                        <span slot="title">导航三</span>
-                    </el-menu-item>
-                    <el-menu-item index="4">
-                        <i class="el-icon-setting"></i>
-                        <span slot="title">导航四</span>
-                    </el-menu-item>
+                    <el-submenu index="3">
+                        <template slot="title">
+                            <i class="el-icon-location"></i>
+                            <span slot="title">文章管理</span>
+                        </template>
+                        <el-menu-item-group>
+                            <el-menu-item index="3-1">文章列表</el-menu-item>
+                        </el-menu-item-group>
+                    </el-submenu>
+                    <el-submenu index="4">
+                    <template slot="title">
+                        <i class="el-icon-location"></i>
+                        <span slot="title">用户管理</span>
+                    </template>
+                    <el-menu-item-group>
+                        <el-menu-item index="4-1">用户列表</el-menu-item>
+                    </el-menu-item-group>
+                    </el-submenu>
                 </el-menu>
             </aside>
             <section class="content-container">
                 <div class="grid-content bg-purple-light">
-                    <el-col :span="24" class="breadcrumb-container">
-                        <strong class="title">{{$route.name}}</strong>
+                    <el-col :span="24" class="breadcrumb-container pt20" >
+                        <!--<strong class="title">{{$route.name}}</strong>-->
                         <el-breadcrumb separator="/" class="breadcrumb-inner">
                             <el-breadcrumb-item v-for="item in $route.matched" :key="item.path">
                                 {{ item.name }}
                             </el-breadcrumb-item>
                         </el-breadcrumb>
                     </el-col>
-                    <el-col :span="24" class="content-wrapper">
+                    <hr>
+                    <el-col :span="24" class="content-wrapper pt20">
                         <transition name="fade" mode="out-in">
                             <router-view></router-view>
                         </transition>
@@ -74,12 +80,10 @@
                 </div>
             </section>
         </el-col>
-
     </el-row>
 </template>
 
 <script>
-
     export default {
         name: "layout",
         components: {},
@@ -206,24 +210,23 @@
                 width: 230px;
             }
             .content-container {
-                // background: #f1f2f7;
                 flex: 1;
-                // position: absolute;
-                // right: 0px;
-                // top: 0px;
-                // bottom: 0px;
-                // left: 230px;
+                 position: absolute;
+                 right: 0px;
+                 top: 0px;
+                 bottom: 0px;
+                 left: 230px;
                 overflow-y: scroll;
                 padding: 20px;
                 .breadcrumb-container {
-                    //margin-bottom: 15px;
+                    margin-bottom: 15px;
                     .title {
                         width: 200px;
                         float: left;
                         color: #475669;
                     }
                     .breadcrumb-inner {
-                        float: right;
+                        float: left;
                     }
                 }
                 .content-wrapper {

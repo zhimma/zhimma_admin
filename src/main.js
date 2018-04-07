@@ -17,13 +17,11 @@ Vue.use(ElementUI);
 //全局前置钩子
 router.beforeEach((to, from, next) => {
     window.document.title = to.meta.title?to.meta.title+'-'+Config.siteName:Config.siteName;
-
-    if (!localStorage.getItem(Config.tokenKey) && to.path != '/login') {
+    if (!sessionStorage.getItem(Config.tokenKey) && to.path != '/login') {
         next({path: '/login'});
     } else {
         next();
     }
-
 });
 //全局后置钩子
 router.afterEach(transition => {

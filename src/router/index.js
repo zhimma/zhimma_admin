@@ -4,6 +4,8 @@ import Router from 'vue-router'
 import layout from '@/view/layout/layout';
 import index from '@/view/index/index';
 import login from '@/view/login/index';
+import menuCreate from '@/view/menu/create';
+import menuIndex from '@/view/menu/index';
 
 
 Vue.use(Router);
@@ -21,14 +23,22 @@ export default new Router({
         },
         {
             path: '/',
-            name: '首页',
+            name: '主页',
             component: layout,
             children: [
-                { path: '/index', component: index, name: '主页', hidden: true },
-            ],
-            meta : {
-                requireAuth : true
-            }
-        }
+                { path: '/index', component: index, name: '主页'},
+            ]
+        },
+        {
+            path: '/',
+            name: '菜单管理',
+            component: layout,
+            children: [
+                { path: '/menu', component: menuIndex, name: '菜单列表'},
+                { path: '/menu/create', component: menuCreate, name: '添加菜单'},
+            ]
+        },
+
+
     ]
 })

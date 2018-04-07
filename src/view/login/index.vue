@@ -1,56 +1,49 @@
 <template>
     <el-row>
-        <el-row class="paddingTop-60">
-            <el-col :span="16" :offset="4">
-                <img src="../../assets/images/logo.png" alt="">
+        <el-row class="pt60">
+            <el-col :span="12" :offset="6">
+                <img src="../../assets/images/logo.png">
             </el-col>
         </el-row>
-        <el-form :model="loginForm" status-icon :rules="rules" ref="loginForm" label-width="100px"
-                 class="paddingTop-60">
-            <el-row>
-                <el-col :span="16" :offset="4">
-                    <el-form-item label="用户名" prop="account">
-                        <el-input type="text" v-model="loginForm.account" auto-complete="off"></el-input>
+        <el-row class="pt60">
+            <el-col :span="12" :offset="6">
+                <el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm" label-width="100px"
+                         class="demo-ruleForm">
+                    <el-form-item label="账号" prop="account">
+                        <el-input type="text" v-model="ruleForm.account" auto-complete="off"></el-input>
                     </el-form-item>
-                </el-col>
-            </el-row>
-            <el-row>
-                <el-col :span="16" :offset="4">
-                    <el-form-item label="密码" prop="password">
-                        <el-input type="password" v-model="loginForm.password" auto-complete="off"></el-input>
+                    <el-form-item label="确认密码" prop="password">
+                        <el-input type="password" v-model="ruleForm.password" auto-complete="off"></el-input>
                     </el-form-item>
-                </el-col>
-            </el-row>
-            <el-row>
-                <el-col :span="16" :offset="4">
                     <el-form-item>
-                        <el-button type="primary" @click="submitForm('loginForm')">提交</el-button>
-                        <el-button @click="resetForm('loginForm')">重置</el-button>
+                        <el-button type="primary" @click="submitForm('ruleForm')">提交</el-button>
                     </el-form-item>
-                </el-col>
-            </el-row>
-        </el-form>
+                </el-form>
+            </el-col>
+        </el-row>
     </el-row>
 </template>
+
+
 <script>
     export default {
         data() {
             var validateAccount = (rule, value, callback) => {
                 if (value === '') {
-                    callback(new Error('请输入账号'));
-                }else{
+                    callback(new Error('请输入用户名'));
+                } else {
                     callback();
                 }
             };
             var validatePassword = (rule, value, callback) => {
                 if (value === '') {
                     callback(new Error('请输入密码'));
-                }else{
+                } else {
                     callback();
                 }
             };
             return {
-                loginForm: {
+                ruleForm: {
                     account: '',
                     password: '',
                 },
@@ -60,7 +53,7 @@
                     ],
                     password: [
                         {validator: validatePassword, trigger: 'blur'}
-                    ],
+                    ]
                 }
             };
         },
@@ -69,32 +62,48 @@
                 this.$refs[formName].validate((valid) => {
                     if (valid) {
                         this.$axios({
-                            method : 'POST',
-                            url:'/login',
-                            data:{
-                                'account' : 'zhimma',
-                                'password' : '123456'
+                            method: 'POST',
+                            url: '/login',
+                            data: {
+                                'account': this.ruleForm.account,
+                                'password': this.ruleForm.password
                             }
-                        }).then(function(response){
-                           localStorage.setItem('Authorization', response.data.data.token);
-                           this.$router.push('/index');
-                        });
+                        }).then(
+                            response => {
+                                if (response.data.status == 1) {
+                                    sessionStorage.setItem(this.$Config.tokenKey, response.data.data.token);
+                                    sessionStorage.setItem('userData', response.data.data.data);
+                                    this.$store.state.token = response.data.data.token;
+                                    // this.getMenus(response.data.data.data.id);
+                                    this.$router.push({path: '/'})
+                                } else {
+                                    alert(response.data.msg);
+                                }
+
+                            }
+                        );
                     } else {
-                        console.log(111);
+                        console.log('error submit!!');
                         return false;
                     }
                 });
             },
-            resetForm(formName) {
-                this.$refs[formName].resetFields();
+            getMenus(id) {
+                this.$axios({
+                    method: 'GET',
+                    url: '/menus/' + id,
+                }).then(response=>{
+                    console.log(response)
+                })
             }
         }
     }
 </script>
-<style>
-    img{
-        text-align:center;
-        margin:0 auto;
-        display:block;
+
+<style scoped>
+    img {
+        text-align: center;
+        margin: 0 auto;
+        display: block;
     }
 </style>

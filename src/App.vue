@@ -42,7 +42,13 @@
     .el-menu .fa:not(.is-children) {
         font-size: 14px;
     }
-    .paddingTop-60{
+    .pt60{
         padding-top: 60px;
+    }
+    .pt20{
+        padding-top: 20px;
+    }
+    .pt40{
+        padding-top: 40px;
     }
 </style>
